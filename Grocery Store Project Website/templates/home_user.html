@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Flask App</title>
+    <style>
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="{{ url_for('assisted_by') }}">Assisted by</a>
+    <a href="{{ url_for('product') }}">Product</a>
+    <div class="user-info">
+    {% if 'username' in session %}
+        Logged in as {{ employee_name }} (Job Title: {{ job_title }}) | <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+</div>
+</div>
+</body>
+</html>

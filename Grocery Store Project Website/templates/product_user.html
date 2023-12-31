@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="navbar">
+    <a href="{{ url_for('home') }}">home</a>
+</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Information</title>
+</head>
+<body>
+    <section>
+        <h2>Product Information</h2>
+        <table border="1">
+            <tr>
+                <th>Barcode</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Product Type</th>
+                <th>Brand</th>
+                <th>Aisle Number</th>
+                <th>Supplier ID</th>
+                <th>Supply Price</th>
+                <th>Supply Quantity</th>
+            </tr>
+            {% for product in product_info %}
+                <tr>
+                    <td>{{ product[0] }}</td>
+                    <td>{{ product[1] }}</td>
+                    <td>{{ product[2] }}</td>
+                    <td>{{ product[3] }}</td>
+                    <td>{{ product[4] }}</td>
+                    <td>{{ product[5] }}</td>
+                    <td>{{ product[6] }}</td>
+                    <td>{{ product[7] }}</td>
+                    <td>{{ product[8] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+</body>
+</html>

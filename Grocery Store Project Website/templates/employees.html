@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="navbar">
+    <a href="{{ url_for('home') }}">home</a>
+</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Information</title>
+</head>
+<body>
+    <section>
+        <h2>Employee Information</h2>
+        <table border="1">
+            <tr>
+                <th>Employee ID</th>
+                <th>Salary</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Password</th>
+                <th>Action</th>
+            </tr>
+            {% for employee in employee_info %}
+                <tr>
+                    <td>{{ employee[0] }}</td>
+                    <td>{{ employee[1] }}</td>
+                    <td>{{ employee[2] }}</td>
+                    <td>{{ employee[3] }}</td>
+                    <td>{{ employee[4] }}</td>
+                    <td>
+                        <form method="post" action="{{ url_for('employees') }}">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="delete_employee_id" value="{{ employee[0] }}">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section>
+        <h2>Create New Employee Account</h2>
+        <form method="post" action="{{ url_for('employees') }}">
+ 
+            <label for="password">Password:</label>
+            <input type="text" name="password" required><br>
+
+            <label for="name">Name:</label>
+            <input type="text" name="name" required><br>
+
+            <label for="position">Position:</label>
+            <input type="text" name="position" required><br>
+    
+            <label for="salary">Salary:</label>
+            <input type="number" name="salary" required><br>
+
+            <input type="submit" value="Create Account">
+        </form>
+    </section>
+</body>
+</html>

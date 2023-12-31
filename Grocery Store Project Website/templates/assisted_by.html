@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="navbar">
+    <a href="{{ url_for('home') }}">home</a>
+</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistance Information</title>
+</head>
+<body>
+    <section>
+        <h2>Assistance Information</h2>
+        <table border="1">
+            <tr>
+                <th>Customer ID</th>
+                <th>Employee ID</th>
+                <th>Service Rating</th>
+                <th>Action</th>
+            </tr>
+            {% for assistance in assistance_info %}
+                <tr>
+                    <td>{{ assistance[0] }}</td>
+                    <td>{{ assistance[1] }}</td>
+                    <td>{{ assistance[2] }}</td>
+                    <td>
+                        <form method="post" action="{{ url_for('assisted_by') }}">
+                            <input type="hidden" name="delete_customer_id" value="{{ assistance[0] }}">
+                            <input type="hidden" name="delete_employee_id" value="{{ assistance[1] }}">
+                            <input type="submit" name="action" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+    <section>
+        <h2>Add New Review</h2>
+        <form method="post" action="{{ url_for('assisted_by') }}">
+    
+            <label for="customer_id">Customer ID:</label>
+            <input type="text" name="customer_id" required><br>
+
+            <label for="employee_id">Employee ID:</label>
+            <input type="text" name="employee_id" required><br>
+    
+            <label for="service_rating">Service Rating:</label>
+            <input type="text" name="service_rating" required><br>
+    
+            <input type="submit" name="action" value="New Review">
+        </form>
+    </section>
+</body>
+</html>

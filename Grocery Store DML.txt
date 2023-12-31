@@ -1,0 +1,59 @@
+INSERT INTO Customer(phone_number, address, name) VALUES
+('283-1234', '111 Oakwood Lane, Springdale', 'Jack Doe'),
+('903-5678', '222 Willow Avenue, Meadowsville', 'Jane Smith'),
+('274-9012', '333 Birchwood Road, Lakeside Village', 'Bob Johnson'),
+('249-3456', '444 Cedar Street, Hilltop Hamlet', 'Alice Brown'),
+('932-7890', '555 Pinehurst Drive, Brookside Borough', 'Charlie Davis');
+
+INSERT INTO Employee(salary, name, position, password) VALUES
+(20000, 'Isabelle Rodriguez', 'Clerk', '$2b$12$kW4ha8qpiJU/8NaiwOJ2aufBBGaWxV5T1Cl4czRkX7Fa6r.X6SA5a'),
+(20000, 'Ethan Thompson', 'Clerk', '$2b$12$kW4ha8qpiJU/8NaiwOJ2aufBBGaWxV5T1Cl4czRkX7Fa6r.X6SA5a'),
+(20000, 'Mia Sullivan', 'Stocker', '$2b$12$kW4ha8qpiJU/8NaiwOJ2aufBBGaWxV5T1Cl4czRkX7Fa6r.X6SA5a'),
+(25000, 'Oliver Harper', 'Ast. Manager', '$2b$12$kW4ha8qpiJU/8NaiwOJ2aufBBGaWxV5T1Cl4czRkX7Fa6r.X6SA5a'),
+(30000, 'Ava Mitchell', 'Manager', '$2b$12$kW4ha8qpiJU/8NaiwOJ2aufBBGaWxV5T1Cl4czRkX7Fa6r.X6SA5a');
+
+INSERT INTO Supplier(supplier_id, delivery_day, company_name) VALUES
+(1, 'Friday', 'Value Wholesale'),
+(2, 'Tuesday', 'C&S Wholesale Grocers'),
+(3, 'Wednesday', 'Allen Bros Distribution');
+
+INSERT INTO Product(name, price, product_type, brand, aisle_number, supplier_id, supply_price, supply_quantity) VALUES
+('OREO Family Size', 5.64, 'Cracker', 'OREO', 5, 2, 4.00, 10),
+('Honey Crisp Apple', 1.56, 'Fruit', 'Golden Farms', '1A', 1, 1.25, 15),
+('Paper Plates 50 Pack', 5.99, 'Paper Plates', 'Chinet', 6, 2, 5.00, 5),
+('Angry Orchard Hard Cider', 16.99, 'Hard Cider', 'Angry Orchard', 15, 3, 14.00, 5),
+('OREO Mint Family Size', 6.89, 'Cracker', 'OREO', 5, 2, 6.00, 10);
+
+INSERT INTO Register(starting_cash, current_cash) VALUES
+(125.00, 145.27),
+(125.00, 132.75),
+(125.00, 167.72);
+
+INSERT INTO Assisted_By(customer_id, employee_id, service_rating) VALUES
+(1, 1, 5),
+(2, 2, 4),
+(3, 3, 3),
+(4, 4, 2),
+(5, 5, 1);
+
+INSERT INTO Sells(register_id, barcode, receipt_number, transaction_date) VALUES
+(1, 1, 1, '2023-11-15'),
+(1, 5, 1, '2023-11-15'),
+(1, 4, 1, '2023-11-15'),
+(3, 2, 2, '2023-11-15'),
+(3, 4, 2, '2023-11-15'),
+(2, 4, 3, '2023-11-15');
+
+INSERT INTO Purchases(customer_id, barcode, purchase_date, quantity) VALUES
+(1, 1, '2023-11-15', 1),
+(1, 5, '2023-11-15', 2),
+(2, 2, '2023-11-15', 1),
+(2, 4, '2023-11-15', 1),
+(3, 4, '2023-11-15', 1);
+
+INSERT INTO Operates(employee_id, register_id) VALUES
+(1, 2),
+(2, 3),
+(3, 2),
+(4, 1),
+(5, 3);

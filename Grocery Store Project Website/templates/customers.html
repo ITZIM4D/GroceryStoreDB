@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="navbar">
+    <a href="{{ url_for('home') }}">home</a>
+</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Information</title>
+</head>
+<body>
+    <section>
+        <h2>Customer Information</h2>
+        <table border="1">
+            <tr>
+                <th>Customer ID</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+            {% for customer in customer_info %}
+                <tr>
+                    <td>{{ customer[0] }}</td>
+                    <td>{{ customer[1] }}</td>
+                    <td>{{ customer[2] }}</td>
+                    <td>{{ customer[3] }}</td>
+                    <td>
+                        <form method="post" action="{{ url_for('customers') }}">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="delete_customer_id" value="{{ customer[0] }}">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+    <section>
+        <h2>New Customer</h2>
+        <form method="post" action="{{ url_for('customers') }}">
+    
+            <label for="phone_number">Phone Number:</label>
+            <input type="text" name="phone_number" required><br>
+    
+            <label for="address">Address:</label>
+            <input type="text" name="address" required><br>
+
+            <label for="name">Name:</label>
+            <input type="text" name="name" required><br>
+    
+            <input type="submit" name="action" value="New Customer">
+        </form>
+    </section>
+</body>
+</html>

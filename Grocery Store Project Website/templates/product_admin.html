@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="navbar">
+    <a href="{{ url_for('home') }}">home</a>
+</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Information</title>
+</head>
+<body>
+    <section>
+        <h2>Product Information</h2>
+        <table border="1">
+            <tr>
+                <th>Barcode</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Product Type</th>
+                <th>Brand</th>
+                <th>Aisle Number</th>
+                <th>Supplier ID</th>
+                <th>Supply Price</th>
+                <th>Supply Quantity</th>
+                <th>Action</th>
+            </tr>
+            {% for product in product_info %}
+                <tr>
+                    <td>{{ product[0] }}</td>
+                    <td>{{ product[1] }}</td>
+                    <td>{{ product[2] }}</td>
+                    <td>{{ product[3] }}</td>
+                    <td>{{ product[4] }}</td>
+                    <td>{{ product[5] }}</td>
+                    <td>{{ product[6] }}</td>
+                    <td>{{ product[7] }}</td>
+                    <td>{{ product[8] }}</td>
+                    <td>
+                        <form method="post" action="{{ url_for('product') }}">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="delete_barcode" value="{{ product[0] }}">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section>
+        <h2>Add Product</h2>
+        <form method="post" action="{{ url_for('product') }}">
+    
+            <label for="barcode">Barcode:</label>
+            <input type="text" name="barcode" required><br>
+    
+            <label for="name">Name:</label>
+            <input type="text" name="name" required><br>
+
+            <label for="price">Price:</label>
+            <input type="text" name="price" required><br>
+
+            <label for="product_type">Product Type:</label>
+            <input type="text" name="product_type" required><br>
+
+            <label for="brand">Brand:</label>
+            <input type="text" name="brand" required><br>
+
+            <label for="aisle_number">Aisle Number:</label>
+            <input type="text" name="aisle_number" required><br>
+
+            <label for="supplier_id">Supplier ID:</label>
+            <input type="text" name="supplier_id" required><br>
+
+            <label for="supply_price">Supply Price:</label>
+            <input type="text" name="supply_price" required><br>
+
+            <label for="supply_quantity">Supply Quantity:</label>
+            <input type="text" name="supply_quantity" required><br>
+    
+            <input type="submit" name="action" value="New Product">
+        </form>
+    </section>
+</body>
+</html>

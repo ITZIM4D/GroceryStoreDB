@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="navbar">
+    <a href="{{ url_for('home') }}">home</a>
+</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Information</title>
+</head>
+<body>
+    <section>
+    <h2>Register Information</h2>
+    <table border="1">
+        <tr>
+            <th>Register</th>
+            <th>Starting Cash</th>
+            <th>Current Cash</th>
+        </tr>
+        {% for register in register_info %}
+            <tr>
+                <td>{{ register[0] }}</td>
+                <td>{{ register[1] }}</td>
+                <td>{{ register[2] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</section>
+
+<section>
+    <h2>Create New Register</h2>
+    <form method="post" action="{{ url_for('register') }}">
+
+        <label for="starting_cash">Starting Cash:</label>
+        <input type="text" name="starting_cash" required><br>
+
+        <label for="current_cash">Current Cash:</label>
+        <input type="text" name="current_cash" required><br>
+
+        <input type="submit" name="action" value="New Register">
+    </form>
+</section>
+
+    <section>
+    <h2>Transaction Information</h2>
+    <table border="1">
+        <tr>
+            <th>Register</th>
+            <th>Barcode</th>
+            <th>Receipt Number</th>
+            <th>Transaction Date</th>
+        </tr>
+        {% for transaction in transaction_info %}
+            <tr>
+                <td>{{ transaction[0] }}</td>
+                <td>{{ transaction[1] }}</td>
+                <td>{{ transaction[2] }}</td>
+                <td>{{ transaction[3] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</section>
+
+<section>
+    <h2>Add New Transaction</h2>
+    <form method="post" action="{{ url_for('register') }}">
+
+        <label for="register">Register:</label>
+        <input type="text" name="register" required><br>
+
+        <label for="barcode">Barcode:</label>
+        <input type="text" name="barcode" required><br>
+
+        <label for="receipt_number">Recipt Number:</label>
+        <input type="text" name="receipt_number" required><br>
+
+        <label for="transaction_date">Transaction Date:</label>
+        <input type="date" name="transaction_date" required><br>
+
+        <input type="submit" name="action" value="New Transaction">
+    </form>
+</section>
+    <section>
+    <h2>Employee Information</h2>
+    <table border="1">
+        <tr>
+            <th>Employee</th>
+            <th>Register ID</th>
+        </tr>
+        {% for employee in employee_info %}
+            <tr>
+                <td>{{ employee[0] }}</td>
+                <td>{{ employee[1] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</section>
+<section>
+    <h2>Employee at new register</h2>
+    <form method="post" action="{{ url_for('register') }}">
+
+        <label for="employee_id">Employee ID:</label>
+        <input type="text" name="employee_id" required><br>
+
+        <label for="register">Register:</label>
+        <input type="text" name="register" required><br>
+
+        <input type="submit" name="action" value="New Employee Register">
+    </form>
+</section>
+
+</body>
+</html>

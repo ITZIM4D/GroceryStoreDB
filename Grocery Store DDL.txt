@@ -1,0 +1,79 @@
+CREATE DATABASE GroceryStore;
+
+USE GroceryStore;
+
+CREATE TABLE Customer (
+	customer_id int primary key AUTO_INCREMENT,
+	phone_number char(10),
+	address varchar(50),
+	name varchar(25)
+);
+
+CREATE TABLE Employee (
+	employee_id int primary key AUTO_INCREMENT,
+	salary int,
+	name varchar(25),
+	position varchar(50),
+	password varchar(255)
+);
+
+CREATE TABLE Supplier (
+	supplier_id int primary key,
+	delivery_day varchar(10),
+	company_name varchar(25)
+);
+
+CREATE TABLE Product (
+	barcode int primary key AUTO_INCREMENT,
+	name varchar(25),
+	price numeric(7,2),
+	product_type varchar(15),
+	brand varchar(15),
+	aisle_number varchar(3),
+	supplier_id int,
+	supply_price numeric(7,2),
+	supply_quantity int,
+	foreign key (supplier_id) references supplier(supplier_id) ON DELETE CASCADE		
+);
+
+CREATE TABLE Register (
+	register_id int primary key AUTO_INCREMENT,
+	starting_cash numeric(7,2),
+	current_cash numeric(7,2)
+);
+
+CREATE TABLE Purchases (
+	customer_id int,
+	barcode int,
+	purchase_date date,
+	quantity int,
+	primary key(customer_id, barcode),
+	foreign key (customer_id) references customer(customer_id) ON DELETE CASCADE,
+	foreign key (barcode) references product(barcode) ON DELETE CASCADE
+);
+
+CREATE TABLE Assisted_By (
+	customer_id int,
+	employee_id int,
+	service_rating int,
+	primary key(customer_id, employee_id),
+	foreign key (customer_id) references customer(customer_id) ON DELETE CASCADE,
+	foreign key (employee_id) references employee(employee_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Sells (
+	register_id int,
+	barcode int,
+	receipt_number int,
+	transaction_date date,
+	primary key (register_id, barcode),
+	foreign key (register_id) references register(register_id) ON DELETE CASCADE,
+	foreign key (barcode) references product(barcode) ON DELETE CASCADE
+);
+
+CREATE TABLE Operates(
+	employee_id int,
+	register_id int,
+	foreign key (employee_id) references employee(employee_id) ON DELETE CASCADE,
+	foreign key (register_id) references register(register_id) ON DELETE CASCADE
+);

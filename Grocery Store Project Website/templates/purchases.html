@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="navbar">
+    <a href="{{ url_for('home') }}">home</a>
+</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Information</title>
+</head>
+<body>
+    <section>
+        <h2>Purchase Information</h2>
+        <table border="1">
+            <tr>
+                <th>Customer ID</th>
+                <th>Barcode</th>
+                <th>Purchase Date</th>
+                <th>Quantity</th>
+                <th>Action</th>
+            </tr>
+            {% for purchase in purchase_info %}
+                <tr>
+                    <td>{{ purchase[0] }}</td>
+                    <td>{{ purchase[1] }}</td>
+                    <td>{{ purchase[2] }}</td>
+                    <td>{{ purchase[3] }}</td>
+                    <td>
+                        <form method="post" action="{{ url_for('purchases') }}">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="delete_customer_id" value="{{ purchase[0] }}">
+                            <input type="hidden" name="delete_barcode" value="{{ purchase[1] }}">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+    <section>
+        <h2>Add Purchase</h2>
+        <form method="post" action="{{ url_for('purchases') }}">
+    
+            <label for="customer_id">Customer ID:</label>
+            <input type="text" name="customer_id" required><br>
+    
+            <label for="barcode">Barcode:</label>
+            <input type="text" name="barcode" required><br>
+
+            <label for="purchase_date">Purchase Date:</label>
+            <input type="date" name="purchase_date" required><br>
+
+            <label for="quantity">Quantity:</label>
+            <input type="text" name="quantity" required><br>
+    
+            <input type="submit" name="action" value="New Purchase">
+        </form>
+    </section>
+</body>
+</html>

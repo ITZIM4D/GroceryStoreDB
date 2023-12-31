@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="navbar">
+    <a href="{{ url_for('home') }}">home</a>
+</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Information</title>
+</head>
+<body>
+    <section>
+        <h2>Supplier Information</h2>
+        <table border="1">
+            <tr>
+                <th>Supplier ID</th>
+                <th>Delivery Day</th>
+                <th>Company Name</th>
+                <th>Action</th>
+            </tr>
+            {% for supplier in supplier_info %}
+                <tr>
+                    <td>{{ supplier[0] }}</td>
+                    <td>{{ supplier[1] }}</td>
+                    <td>{{ supplier[2] }}</td>
+                    <td>
+                        <form method="post" action="{{ url_for('supplier') }}">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="delete_supplier_id" value="{{ supplier[0] }}">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+    <section>
+        <h2>Add Supplier</h2>
+        <form method="post" action="{{ url_for('supplier') }}">
+    
+            <label for="supplier_id">Supplier ID:</label>
+            <input type="text" name="supplier_id" required><br>
+    
+            <label for="delivery_day">Delivery Day:</label>
+            <input type="text" name="delivery_day" required><br>
+
+            <label for="company_name">Company Name:</label>
+            <input type="text" name="company_name" required><br>
+    
+            <input type="submit" name="action" value="New Supplier">
+        </form>
+    </section>
+</body>
+</html>
